@@ -2,7 +2,9 @@ package com.example.Examen2.controller;
 
 import com.example.Examen2.model.Producto;
 import com.example.Examen2.service.IProductoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,12 +22,13 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
-    public Producto obtenerPorId(@PathVariable Long id) {
-        return productoService.buscarPorId(id);
+    public ResponseEntity<Producto> obtenerPorId(@PathVariable Long id) {
+        Producto p = productoService.buscarPorId(id);
+        return (p != null) ? ResponseEntity.ok(p) : ResponseEntity.notFound().build();
     }
 
     @PostMapping
-    public Producto crear(@RequestBody Producto producto) {
+    public Producto crear(@Valid @RequestBody Producto producto) {
         return productoService.guardar(producto);
     }
 
