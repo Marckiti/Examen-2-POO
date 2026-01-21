@@ -1,0 +1,102 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "API Documentation",
+    "version" : "1.0"
+  },
+  "paths" : {
+    "/api/productos" : {
+      "post" : {
+        "summary" : "crear",
+        "description" : "crear",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "required" : [ "nombre", "precio" ],
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "integer",
+                    "description" : "",
+                    "format" : "int64"
+                  },
+                  "nombre" : {
+                    "type" : "string",
+                    "description" : ""
+                  },
+                  "precio" : {
+                    "minimum" : 0.0,
+                    "type" : "number",
+                    "description" : ""
+                  },
+                  "stock" : {
+                    "minimum" : 0,
+                    "type" : "integer",
+                    "description" : ""
+                  }
+                },
+                "description" : ""
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "required" : [ "nombre", "precio" ],
+                  "type" : "object",
+                  "properties" : {
+                    "id" : {
+                      "type" : "integer",
+                      "description" : "",
+                      "format" : "int64"
+                    },
+                    "nombre" : {
+                      "type" : "string",
+                      "description" : ""
+                    },
+                    "precio" : {
+                      "minimum" : 0.0,
+                      "type" : "number",
+                      "description" : ""
+                    },
+                    "stock" : {
+                      "minimum" : 0,
+                      "type" : "integer",
+                      "description" : ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/productos/{id}" : {
+      "delete" : {
+        "summary" : "eliminar",
+        "description" : "eliminar",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "No Content"
+          }
+        }
+      }
+    }
+  },
+  "components" : { }
+}
