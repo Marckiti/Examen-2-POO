@@ -4,6 +4,7 @@ import com.example.Examen2.model.Producto;
 import com.example.Examen2.service.IProductoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,7 @@ public class ProductoController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Producto crear(@Valid @RequestBody Producto producto) {
         return productoService.guardar(producto);
     }
