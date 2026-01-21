@@ -3,7 +3,7 @@
   "info" : {
     "title" : "API Documentation",
     "version" : "1.0"
-  },
+  }, 
   "paths" : {
     "/api/productos" : {
       "post" : {
@@ -99,4 +99,5 @@
     }
   },
   "components" : { }
+
 }
