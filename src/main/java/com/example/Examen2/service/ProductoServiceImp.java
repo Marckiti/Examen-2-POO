@@ -1,6 +1,7 @@
 package com.example.Examen2.service;
 
 
+import com.example.Examen2.exception.ProductoNotFoundException;
 import com.example.Examen2.model.Producto;
 import com.example.Examen2.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,18 @@ public class ProductoServiceImp implements IProductoService {
 
     @Override
     public List<Producto> listarProductos() {
+
         return productoRepository.findAll();
     }
 
     @Override
     public Producto buscarPorId(Long id) {
-        return productoRepository.findById(id).orElse(null);
+        return productoRepository.findById(id)
+                .orElseThrow(() ->
+                        new ProductoNotFoundException(
+                                "Producto con ID " + id + " no encontrado"
+                        )
+                );
     }
 
     @Override
@@ -30,6 +37,12 @@ public class ProductoServiceImp implements IProductoService {
 
     @Override
     public void eliminar(Long id) {
+        if (!productoRepository.existsById(id)) {
+            throw new ProductoNotFoundException(
+                    "Producto con ID " + id + " no encontrado"
+            );
+        }
         productoRepository.deleteById(id);
     }
+
 }
