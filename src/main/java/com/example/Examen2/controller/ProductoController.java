@@ -40,6 +40,7 @@ public class ProductoController {
         productoActual.setNombre(producto.getNombre());
         productoActual.setPrecio(producto.getPrecio());
         productoActual.setStock(producto.getStock());
+        productoActual.setDescripcion(producto.getDescripcion());
         return ResponseEntity.ok(productoService.guardar(productoActual));
     }
 
