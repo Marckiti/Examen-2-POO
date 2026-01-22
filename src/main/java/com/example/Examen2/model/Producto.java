@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +27,8 @@ public class Producto {
     private String nombre;
 
     @NotBlank(message = "La descripcion es obligatoria")
-    @Size (min = 5, max = 100, message = "La descripcion debe estar entre 5 y 100 caracteres")
+    @Size(min = 5, max = 100, message = "La descripcion debe estar entre 5 y 100 caracteres")
     private String descripcion;
-
 
     @Min(value = 0, message = "El precio no puede ser menor a 0")
     @NotNull(message = "El precio es obligatorio")
