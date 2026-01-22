@@ -1,5 +1,6 @@
 package com.example.Examen2.controller;
 
+import com.example.Examen2.dto.ProductoResponse;
 import com.example.Examen2.model.Producto;
 import com.example.Examen2.service.IProductoService;
 import jakarta.validation.Valid;
@@ -19,8 +20,18 @@ public class ProductoController {
     private IProductoService productoService;
 
     @GetMapping
-    public ResponseEntity<List<Producto>> listar() {
-        return ResponseEntity.ok(productoService.listarProductos());
+    public ResponseEntity<List<ProductoResponse>> listar() {
+    List<Producto> productos = productoService.listarProductos();
+    List<ProductoResponse> responses = productos.stream()
+            .map(p -> new ProductoResponse(
+                p.getId(),
+                p.getNombre(),
+                p.getPrecio(),
+                p.getStock(),
+                p.getDescripcion()
+            ))
+            .collect(java.util.stream.Collectors.toList());
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/{id}")
