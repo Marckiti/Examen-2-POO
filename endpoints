@@ -3,7 +3,7 @@
   "info" : {
     "title" : "API Documentation",
     "version" : "1.0"
-  }, 
+  },
   "paths" : {
     "/api/productos" : {
       "post" : {
@@ -13,7 +13,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "required" : [ "nombre", "precio" ],
+                "required" : [ "descripcion", "nombre", "precio", "stock" ],
                 "type" : "object",
                 "properties" : {
                   "id" : {
@@ -22,6 +22,14 @@
                     "format" : "int64"
                   },
                   "nombre" : {
+                    "maxLength" : 50,
+                    "minLength" : 2,
+                    "type" : "string",
+                    "description" : ""
+                  },
+                  "descripcion" : {
+                    "maxLength" : 100,
+                    "minLength" : 5,
                     "type" : "string",
                     "description" : ""
                   },
@@ -47,7 +55,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "required" : [ "nombre", "precio" ],
+                  "required" : [ "descripcion", "nombre", "precio", "stock" ],
                   "type" : "object",
                   "properties" : {
                     "id" : {
@@ -56,6 +64,14 @@
                       "format" : "int64"
                     },
                     "nombre" : {
+                      "maxLength" : 50,
+                      "minLength" : 2,
+                      "type" : "string",
+                      "description" : ""
+                    },
+                    "descripcion" : {
+                      "maxLength" : 100,
+                      "minLength" : 5,
                       "type" : "string",
                       "description" : ""
                     },
@@ -99,5 +115,4 @@
     }
   },
   "components" : { }
-
 }
