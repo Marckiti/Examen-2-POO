@@ -26,4 +26,17 @@ public class GlobalExceptionHandler {
         ErrorResponse response = new ErrorResponse("Datos de entrada inválidos", errores);
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
+
+
+    @ExceptionHandler(ProductoNotFoundException.class)
+    public ResponseEntity<ErrorResponse> manejarProductoNoEncontrado(
+            ProductoNotFoundException ex) {
+
+        ErrorResponse response = new ErrorResponse(
+                ex.getMessage(),
+                null
+        );
+
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
 }
